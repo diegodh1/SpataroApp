@@ -18,7 +18,7 @@ interface AppDataBaseDao {
     //get all the users in the DB
     @Transaction
     @Query("SELECT * FROM User")
-    fun getUsersWithPlaylists(): List<UserProfile>
+    fun getUserProfiles(): List<UserProfile>
 
     //delete all users
     @Query("DELETE FROM User")

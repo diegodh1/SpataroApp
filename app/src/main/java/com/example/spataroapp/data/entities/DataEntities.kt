@@ -5,16 +5,17 @@ import androidx.room.*
 data class Document(val id_tipo_doc: String)
 //API REST ENTITIES
 //general api response
-data class ApiResponse(val message:String, val payload:Any, val status:Int)
+data class ApiLoginResponse(val message:String, val payload:UserLogin, val status:Int)
 // entitie for endpoint iniciar_sesion
-data class UserLogin(val id_usuario: Int,
-                     val passwrd: String,
-                     val id_tipo_doc:String = "",
-                     val nombre: String = "",
-                     val apellido:String = "",
-                     val correo:String = "",
-                     val foto:String = "",
-                     val menus:MutableList<String> = mutableListOf())
+data class UserLogin(var id_usuario: Int = 0,
+                     var passwrd: String = "",
+                     var id_tipo_doc:String = "",
+                     var nombre: String = "",
+                     var apellido:String = "",
+                     var correo:String = "",
+                     var foto:String = "",
+                     var activo:Boolean = false,
+                     var menus:MutableList<String> = mutableListOf())
 
 
 //ROOM ENTITIES
@@ -22,6 +23,7 @@ data class UserLogin(val id_usuario: Int,
 data class User(
     @PrimaryKey
     @ColumnInfo(name = "user_id") val id_usuario: Int,
+    @ColumnInfo(name = "password") val password: String,
     @ColumnInfo(name = "tipo_doc_id") val id_tipo_doc: String?,
     @ColumnInfo(name = "nombre") val nombre: String?,
     @ColumnInfo(name = "apellido") val apellido: String?,

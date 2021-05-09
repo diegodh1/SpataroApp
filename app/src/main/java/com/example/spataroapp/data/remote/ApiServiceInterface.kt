@@ -1,6 +1,6 @@
 package com.example.spataroapp.data.remote
 
-import com.example.spataroapp.data.entities.ApiResponse
+import com.example.spataroapp.data.entities.ApiLoginResponse
 import com.example.spataroapp.data.entities.Document
 import com.example.spataroapp.data.entities.UserLogin
 import org.json.JSONObject
@@ -14,5 +14,5 @@ interface ApiServiceInterface {
     suspend fun getAllDocuments() : Response<MutableList<Document>>
 
     @POST("iniciar_sesion")
-    suspend fun login(@Body body: UserLogin): Response<ApiResponse>
+    suspend fun login(@Body body: UserLogin): Response<ApiLoginResponse>
 }
