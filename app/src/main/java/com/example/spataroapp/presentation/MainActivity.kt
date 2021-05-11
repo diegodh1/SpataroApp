@@ -1,5 +1,6 @@
 package com.example.spataroapp.presentation
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
@@ -8,6 +9,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.example.spataroapp.R
 import com.example.spataroapp.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
@@ -26,14 +29,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
+    override fun startActivity(intent: Intent?, options: Bundle?) {
+        createToolbar()
+        hideDrawer()
+        super.startActivity(intent, options)
+    }
+
+    override fun onRestart() {
+        createToolbar()
+        hideDrawer()
+        super.onRestart()
+    }
+
+    //allow navigation UP
+    fun allowNavigationUP(){
+        actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        supportActionBar?.show()
+        actionBarDrawerToggle?.setToolbarNavigationClickListener {
+            val nav = Navigation.findNavController(this,R.id.nav_host_fragment)
+            nav.navigateUp()
+        }
+    }
+
+    //hide the drawer
     fun hideDrawer() {
         drawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
+    //set the profile information
     fun setInfoDrawer(name: String, email: String, foto: String){
         drawerLayout.user_name.text = name
         drawerLayout.email.text = email
@@ -42,6 +70,15 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.profile_photo.setImageBitmap(decodedImage)
     }
 
+    //goes to home screen by default
+    fun setScreenToHome(vararg  actions: Int ){
+        val nav = Navigation.findNavController(this, R.id.nav_host_fragment)
+        for(action in actions){
+            nav.navigate(action)
+        }
+    }
+
+    //create the toolbar and allow drawer navigation
     fun createToolbar(){
         //setting navigation drawer
         binding.appBar.isVisible = true
@@ -64,8 +101,7 @@ class MainActivity : AppCompatActivity() {
         navigation_view.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.users_menu -> {
-                    Toast.makeText(this, "USER", Toast.LENGTH_SHORT).show()
-                    drawerLayout.close()
+                    setScreenToHome(R.id.action_home_to_users)
                 }
                 R.id.clients_menu -> {
                     Toast.makeText(this, "CLIENTES", Toast.LENGTH_SHORT).show()

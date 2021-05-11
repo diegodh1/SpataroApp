@@ -21,7 +21,11 @@
         android:id="@+id/home"
         android:name="com.example.spataroapp.presentation.home_screen.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_users"
+            app:destination="@id/users" />
+    </fragment>
     <fragment
         android:id="@+id/login"
         android:name="com.example.spataroapp.presentation.login_screen.Login"
@@ -31,4 +35,8 @@
             android:id="@+id/action_login_to_home"
             app:destination="@id/home" />
     </fragment>
+    <fragment
+        android:id="@+id/users"
+        android:name="com.example.spataroapp.presentation.admin_user_screen.Users"
+        android:label="Users" />
 </navigation>

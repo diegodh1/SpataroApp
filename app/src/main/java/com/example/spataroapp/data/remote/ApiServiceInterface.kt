@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface ApiServiceInterface {
     @GET("get_documentos")
-    suspend fun getAllDocuments() : Response<MutableList<Document>>
+    suspend fun getAllDocuments() : Response<MutableList<String>>
 
     @POST("iniciar_sesion")
     suspend fun login(@Body body: UserLogin): Response<ApiLoginResponse>

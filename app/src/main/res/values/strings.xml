@@ -18,4 +18,10 @@
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="email">Correo</string>
+    <string name="doc_type">Tipo de documento</string>
+    <string name="admin">ADMINISTRADOR</string>
+    <string name="seller">VENDEDOR</string>
 </resources>
