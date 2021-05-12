@@ -31,17 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    override fun startActivity(intent: Intent?, options: Bundle?) {
-        createToolbar()
-        hideDrawer()
-        super.startActivity(intent, options)
-    }
 
-    override fun onRestart() {
-        createToolbar()
-        hideDrawer()
-        super.onRestart()
-    }
 
     //allow navigation UP
     fun allowNavigationUP(){
@@ -104,8 +94,7 @@ class MainActivity : AppCompatActivity() {
                     setScreenToHome(R.id.action_home_to_users)
                 }
                 R.id.clients_menu -> {
-                    Toast.makeText(this, "CLIENTES", Toast.LENGTH_SHORT).show()
-                    drawerLayout.close()
+                    setScreenToHome(R.id.action_home_to_client)
                 }
                 R.id.files -> {
                     Toast.makeText(this, "REFERENCIAS", Toast.LENGTH_SHORT).show()

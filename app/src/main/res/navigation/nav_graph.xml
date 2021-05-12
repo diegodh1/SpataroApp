@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_home_to_users"
             app:destination="@id/users" />
+        <action
+            android:id="@+id/action_home_to_client"
+            app:destination="@id/client" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -39,4 +42,9 @@
         android:id="@+id/users"
         android:name="com.example.spataroapp.presentation.admin_user_screen.Users"
         android:label="Users" />
+    <fragment
+        android:id="@+id/client"
+        android:name="com.example.spataroapp.presentation.admin_client_screen.Client"
+        android:label="fragment_client"
+        tools:layout="@layout/fragment_client" />
 </navigation>

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spataroapp.data.entities.ApiLoginResponse
 import com.example.spataroapp.data.entities.User
-import com.example.spataroapp.data.entities.UserLogin
+import com.example.spataroapp.data.entities.UserApi
 import com.example.spataroapp.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -38,7 +38,7 @@ class LoginViewModel @Inject constructor(private val repository: Repository) : V
     //make http request
     fun makeRequest() {
         viewModelScope.launch {
-            val json = UserLogin(user.value!!.toInt(), password.value!!)
+            val json = UserApi(user.value!!.toInt(), password.value!!)
             val result = repository.login(json) as? ApiLoginResponse
             when (result?.message) {
                 "ok" -> {

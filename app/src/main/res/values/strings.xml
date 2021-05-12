@@ -24,4 +24,9 @@
     <string name="doc_type">Tipo de documento</string>
     <string name="admin">ADMINISTRADOR</string>
     <string name="seller">VENDEDOR</string>
+    <string name="num_doc">Número de Documento</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="country">País</string>
+    <string name="city">Ciudad</string>
 </resources>

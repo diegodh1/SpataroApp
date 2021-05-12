@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spataroapp.data.entities.ApiLoginResponse
 import com.example.spataroapp.data.entities.User
-import com.example.spataroapp.data.entities.UserLogin
+import com.example.spataroapp.data.entities.UserApi
 import com.example.spataroapp.data.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -28,7 +28,7 @@ class SplashViewModel @Inject constructor(private val repository: Repository): V
         viewModelScope.launch {
             val users = repository.getLoggedUser()
             if(users.isNotEmpty()){
-                val json = UserLogin(users.last().user.id_usuario, users.last().user.password)
+                val json = UserApi(users.last().user.id_usuario, users.last().user.password)
                 val result = repository.login(json) as? ApiLoginResponse
                 when(result?.message){
                     "ok" -> {
