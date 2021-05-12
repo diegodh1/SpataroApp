@@ -97,12 +97,10 @@ class MainActivity : AppCompatActivity() {
                     setScreenToHome(R.id.action_home_to_client)
                 }
                 R.id.files -> {
-                    Toast.makeText(this, "REFERENCIAS", Toast.LENGTH_SHORT).show()
-                    drawerLayout.close()
+                    setScreenToHome(R.id.action_home_to_reference)
                 }
                 R.id.orders -> {
-                    Toast.makeText(this, "PEDIDOS", Toast.LENGTH_SHORT).show()
-                    drawerLayout.close()
+                    setScreenToHome(R.id.action_home_to_order)
                 }
             }
             true

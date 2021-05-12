@@ -42,7 +42,8 @@
                         android:backgroundTint="@color/textInputColor"
                         android:enabled="false"
                         android:inputType="none"
-                        android:textColor="#000">
+                        android:textColor="#000"
+                        android:text="@={viewModel.typeID}">
                     </AutoCompleteTextView>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,6 +231,7 @@
                 android:layout_margin="16dp"
                 app:backgroundTint="@color/colorPrimaryDark"
                 app:tint="@color/textInputColor"
+                android:onClick="@{() -> viewModel.createClient()}"
                 app:srcCompat="@drawable/check"/>
 
         </LinearLayout>

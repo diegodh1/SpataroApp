@@ -193,8 +193,7 @@ class Users : Fragment() {
 
         //message observer
         viewModel.message.observe(viewLifecycleOwner, Observer { value ->
-            val mDialogView =
-                LayoutInflater.from(context).inflate(R.layout.infomation, null)
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.infomation, null)
             val mBuilder = AlertDialog.Builder(context).setView(mDialogView).setTitle("")
             when{
                 value == "Registro Realizado" || value == "Registro Actualizado" -> {
@@ -247,7 +246,6 @@ class Users : Fragment() {
         searchView.queryHint = "Buscar Usuario"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                Log.i("SUBMIT", p0.toString())
                 if (p0 != null && !p0.isDigitsOnly()) {
                     Toast.makeText(
                         context,

@@ -1,9 +1,6 @@
 package com.example.spataroapp.data.repository
 
-import com.example.spataroapp.data.entities.Client
-import com.example.spataroapp.data.entities.User
-import com.example.spataroapp.data.entities.UserApi
-import com.example.spataroapp.data.entities.UserProfile
+import com.example.spataroapp.data.entities.*
 import com.example.spataroapp.data.local.AppDataBaseDao
 import com.example.spataroapp.data.remote.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +38,24 @@ class Repository @Inject constructor(private val remoteDataSource: RemoteDataSou
     suspend fun createClient(json: Client):Any{
         return withContext(Dispatchers.IO) {
             remoteDataSource.createClient(json)
+        }
+    }
+
+    suspend fun editClient(json: Client):Any{
+        return withContext(Dispatchers.IO) {
+            remoteDataSource.editClient(json)
+        }
+    }
+
+    suspend fun searchClient(json: Client): Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.searchClient(json)
+        }
+    }
+
+    suspend fun saveReferences(json: ApiRequestReference): Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.saveReferences(json)
         }
     }
 

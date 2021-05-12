@@ -1,10 +1,14 @@
 package com.example.spataroapp.presentation.admin_client_screen
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -13,6 +17,7 @@ import com.example.spataroapp.R
 import com.example.spataroapp.databinding.FragmentClientBinding
 import com.example.spataroapp.presentation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.infomation.view.*
 
 @AndroidEntryPoint
 class Client : Fragment() {
@@ -43,6 +48,27 @@ class Client : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.users_menu, menu)
+        val search = menu?.findItem(R.id.nav_search)
+        val searchView = search?.actionView as SearchView
+        searchView.queryHint = "Buscar Cliente"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                if (p0 != null && !p0.isDigitsOnly()) {
+                    Toast.makeText(
+                        context,
+                        "El documento del cliente debe ser numérico",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    viewModel.searchClient(p0!!.toInt())
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return true
+            }
+        })
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -54,6 +80,23 @@ class Client : Fragment() {
             if (value.isNotEmpty()) {
                 updateList(value)
             }
+        })
+
+        //message observer
+        viewModel.message.observe(viewLifecycleOwner, Observer { value ->
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.infomation, null)
+            val mBuilder = AlertDialog.Builder(context).setView(mDialogView).setTitle("")
+            if(value != ""){
+                mDialogView.content.text = value
+                val alertDialog = mBuilder.show()
+                mDialogView.aceptar.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+                mDialogView.cerrar.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+            }
+
         })
     }
 

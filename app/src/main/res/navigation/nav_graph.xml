@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_home_to_client"
             app:destination="@id/client" />
+        <action
+            android:id="@+id/action_home_to_reference"
+            app:destination="@id/reference" />
+        <action
+            android:id="@+id/action_home_to_order"
+            app:destination="@id/order" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -47,4 +53,14 @@
         android:name="com.example.spataroapp.presentation.admin_client_screen.Client"
         android:label="fragment_client"
         tools:layout="@layout/fragment_client" />
+    <fragment
+        android:id="@+id/reference"
+        android:name="com.example.spataroapp.presentation.reference_screen.Reference"
+        android:label="fragment_reference"
+        tools:layout="@layout/fragment_reference" />
+    <fragment
+        android:id="@+id/order"
+        android:name="com.example.spataroapp.presentation.order_screen.Order"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

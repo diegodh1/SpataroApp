@@ -29,4 +29,7 @@
     <string name="address">Dirección</string>
     <string name="country">País</string>
     <string name="city">Ciudad</string>
+    <string name="und_mts">El archivo está en metros o unidades?</string>
+    <string name="select_file">Seleccionar Archivo</string>
+    <string name="update_references">ACTUALIZAR REFERENCIAS</string>
 </resources>

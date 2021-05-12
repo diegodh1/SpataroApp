@@ -18,16 +18,21 @@ data class UserApi(var id_usuario: Int = 0,
                      var menus:MutableList<String> = mutableListOf())
 
 // entities for endpoint crear_clientes
+data class ApiClientResponse(var message:String, var payload:Client, var status:Int)
 data class Client(var id_cliente:Int = 0,
                   var id_tipo_doc: String = "",
                   var nombre:String = "",
                   var apellido:String = "",
                   var correo:String = "",
                   var direcciones:MutableList<Address> = mutableListOf(),
-                  var telefonos:MutableList<Telefono> = mutableListOf())
+                  var telefonos:MutableList<Telefono> = mutableListOf(),
+                  var activo:Boolean = true)
 
 data class Address(var id_cliente:Int = 0, var id_pais:String = "", var id_ciudad:String = "",var direccion:String ="", var activo:Boolean = true)
 data class Telefono(var id_cliente:Int = 0, var id_pais:String = "", var id_ciudad:String = "",var telefono:String ="", var activo:Boolean = true)
+
+//entities for endpoint guardar_referencia
+data class ApiRequestReference(var file:String, var tipo:String)
 
 
 

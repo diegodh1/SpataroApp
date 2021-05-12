@@ -1,9 +1,6 @@
 package com.example.spataroapp.data.remote
 
-import com.example.spataroapp.data.entities.ApiLoginResponse
-import com.example.spataroapp.data.entities.Client
-import com.example.spataroapp.data.entities.Document
-import com.example.spataroapp.data.entities.UserApi
+import com.example.spataroapp.data.entities.*
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
@@ -14,6 +11,7 @@ interface ApiServiceInterface {
     @GET("get_documentos")
     suspend fun getAllDocuments() : Response<MutableList<String>>
 
+    //user endpoints
     @POST("iniciar_sesion")
     suspend fun login(@Body body: UserApi): Response<ApiLoginResponse>
 
@@ -26,6 +24,18 @@ interface ApiServiceInterface {
     @POST("editar_usuario")
     suspend fun editUser(@Body body: UserApi): Response<ApiLoginResponse>
 
+    //client endpoints
+
     @POST("crear_cliente")
-    suspend fun createClient(@Body body: Client): Response<ApiLoginResponse>
+    suspend fun createClient(@Body body: Client): Response<ApiClientResponse>
+
+    @POST("editar_cliente")
+    suspend fun editClient(@Body body: Client): Response<ApiClientResponse>
+
+    @POST("search_cliente")
+    suspend fun searchClient(@Body body: Client): Response<ApiClientResponse>
+
+    //reference
+    @POST("guardar_referencia")
+    suspend fun saveReferences(@Body body: ApiRequestReference): Response<ApiClientResponse>
 }
