@@ -32,4 +32,6 @@
     <string name="und_mts">El archivo está en metros o unidades?</string>
     <string name="select_file">Seleccionar Archivo</string>
     <string name="update_references">ACTUALIZAR REFERENCIAS</string>
+    <string name="select_client">Seleccionar Cliente</string>
+    <string name="select_date">Seleccionar Fecha</string>
 </resources>

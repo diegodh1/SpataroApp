@@ -34,7 +34,10 @@ data class Telefono(var id_cliente:Int = 0, var id_pais:String = "", var id_ciud
 //entities for endpoint guardar_referencia
 data class ApiRequestReference(var file:String, var tipo:String)
 
+//entities for orders
 
+data class ApiOrderResponse(var message:String, var status:Int, var id_pedido:Int)
+data class Order(var id_cliente:Int, var id_usuario: Int, var fecha:String, var firma:String = "", var observacion:String = "", var direccion:String = "")
 
 
 

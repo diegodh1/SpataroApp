@@ -1,7 +1,7 @@
 package com.example.spataroapp.data.remote
 
 import com.example.spataroapp.data.entities.*
-import org.json.JSONObject
+import com.example.spataroapp.presentation.order_screen.Order
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -25,7 +25,6 @@ interface ApiServiceInterface {
     suspend fun editUser(@Body body: UserApi): Response<ApiLoginResponse>
 
     //client endpoints
-
     @POST("crear_cliente")
     suspend fun createClient(@Body body: Client): Response<ApiClientResponse>
 
@@ -35,7 +34,15 @@ interface ApiServiceInterface {
     @POST("search_cliente")
     suspend fun searchClient(@Body body: Client): Response<ApiClientResponse>
 
-    //reference
+    //reference endpoints
     @POST("guardar_referencia")
     suspend fun saveReferences(@Body body: ApiRequestReference): Response<ApiClientResponse>
+
+    //order endpoints
+    @POST("buscar_cliente")
+    suspend fun searchClientByName(@Body body: Client): Response<MutableList<Client>>
+
+    //order endpoints
+    @POST("crear_pedido")
+    suspend fun createOrder(@Body body: com.example.spataroapp.data.entities.Order): Response<ApiOrderResponse>
 }

@@ -3,6 +3,7 @@ package com.example.spataroapp.data.remote
 import com.example.spataroapp.data.entities.ApiRequestReference
 import com.example.spataroapp.data.entities.Client
 import com.example.spataroapp.data.entities.UserApi
+import com.example.spataroapp.presentation.order_screen.Order
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
@@ -22,4 +23,8 @@ class RemoteDataSource @Inject constructor(
 
     //reference endpoints
     suspend fun saveReferences(json: ApiRequestReference) = getResult { apiService.saveReferences(json)}
+
+    //orders endpoints
+    suspend fun searchClientByName(json: Client) = getResult { apiService.searchClientByName(json)}
+    suspend fun createOrder(json: com.example.spataroapp.data.entities.Order) = getResult { apiService.createOrder(json)}
 }

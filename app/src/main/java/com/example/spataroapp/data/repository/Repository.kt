@@ -59,6 +59,18 @@ class Repository @Inject constructor(private val remoteDataSource: RemoteDataSou
         }
     }
 
+    suspend fun searchClientByName(json: Client): Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.searchClientByName(json)
+        }
+    }
+
+    suspend fun createOrder(json:  com.example.spataroapp.data.entities.Order): Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.createOrder(json)
+        }
+    }
+
     //local data source
     suspend fun getLoggedUser():List<UserProfile>{
         return withContext(Dispatchers.IO) {

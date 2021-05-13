@@ -1,25 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.order_screen.Order"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".presentation.order_screen.Order">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.spataroapp.presentation.order_screen.OrderViewModel" />
     </data>
 
-<FrameLayout android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ORDERS" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_client_id"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/select_client"
+            app:startIconDrawable="@drawable/clients">
+
+            <AutoCompleteTextView
+                android:id="@+id/input_client_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/textInputColor"
+                android:enabled="false"
+                android:inputType="none"
+                android:text="@={viewModel.clientID}"
+                android:textColor="#000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="1dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:background="@color/greenColor"
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:id="@+id/orderID"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="Información del Cliente"
+                        android:textColor="@color/textInputColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:paddingLeft="5dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/layout_doc"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="T.I"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/type_doc"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.docType}" />
+                </TableRow>
+
+                <TableRow
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/layout_num"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Número Documento"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/num_doc"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.docNum}" />
+                </TableRow>
+
+                <TableRow
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/layout_name"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nombre"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.name}" />
+                </TableRow>
+
+                <TableRow
+                    android:paddingLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp">
+
+                    <TextView
+                        android:id="@+id/layout_email"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Correo"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.email}" />
+                </TableRow>
+            </TableLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selectDate"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/select_date"
+            android:textColor="@color/colorPrimaryDark"
+            app:icon="@drawable/calendar"
+            app:iconGravity="textEnd"
+            app:iconTint="@color/colorPrimaryDark" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/initOrder"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="16dp"
+            android:text="Iniciar Nuevo Pedido"
+            android:textColor="@color/textInputColor"
+            app:icon="@drawable/check"
+            app:iconGravity="textEnd"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:iconTint="@color/textInputColor" />
+    </LinearLayout>
 
 </layout>
