@@ -1,8 +1,6 @@
 package com.example.spataroapp.data.remote
 
-import com.example.spataroapp.data.entities.ApiRequestReference
-import com.example.spataroapp.data.entities.Client
-import com.example.spataroapp.data.entities.UserApi
+import com.example.spataroapp.data.entities.*
 import com.example.spataroapp.presentation.order_screen.Order
 import javax.inject.Inject
 
@@ -27,4 +25,11 @@ class RemoteDataSource @Inject constructor(
     //orders endpoints
     suspend fun searchClientByName(json: Client) = getResult { apiService.searchClientByName(json)}
     suspend fun createOrder(json: com.example.spataroapp.data.entities.Order) = getResult { apiService.createOrder(json)}
+
+    suspend fun searchReference(json: Referencia) = getResult { apiService.searchReferences(json)}
+    suspend fun searchColorByReference(json: Referencia) = getResult { apiService.searchColorByReference(json)}
+    suspend fun searchTallaByColorReference(json: Referencia) = getResult { apiService.searchTallaByColorReference(json)}
+    suspend fun addItemOrder(json: ApiItemOrder) = getResult { apiService.AddItemOrder(json)}
+    suspend fun getItemsOder(json: ApiItemOrder) = getResult { apiService.getItemsOrder(json)}
+
 }

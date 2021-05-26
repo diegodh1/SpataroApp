@@ -71,6 +71,37 @@ class Repository @Inject constructor(private val remoteDataSource: RemoteDataSou
         }
     }
 
+    suspend fun searchReference(json:  com.example.spataroapp.data.entities.Referencia): Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.searchReference(json)
+        }
+    }
+
+    suspend fun searchColorByReference(json: Referencia):Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.searchColorByReference(json)
+        }
+    }
+
+    suspend fun searchTallaByColorReference(json: Referencia):Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.searchTallaByColorReference(json)
+        }
+    }
+
+    suspend fun AddItemOrder(json: ApiItemOrder):Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.addItemOrder(json)
+        }
+    }
+
+    suspend fun getItemsOrder(json: ApiItemOrder):Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.getItemsOder(json)
+        }
+    }
+
+
     //local data source
     suspend fun getLoggedUser():List<UserProfile>{
         return withContext(Dispatchers.IO) {

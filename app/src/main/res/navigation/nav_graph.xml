@@ -30,7 +30,7 @@
             app:destination="@id/client" />
         <action
             android:id="@+id/action_home_to_reference"
-            app:destination="@id/reference" />
+            app:destination="@id/reference_id" />
         <action
             android:id="@+id/action_home_to_order"
             app:destination="@id/order" />
@@ -54,7 +54,7 @@
         android:label="fragment_client"
         tools:layout="@layout/fragment_client" />
     <fragment
-        android:id="@+id/reference"
+        android:id="@+id/reference_id"
         android:name="com.example.spataroapp.presentation.reference_screen.Reference"
         android:label="fragment_reference"
         tools:layout="@layout/fragment_reference" />

@@ -45,4 +45,21 @@ interface ApiServiceInterface {
     //order endpoints
     @POST("crear_pedido")
     suspend fun createOrder(@Body body: com.example.spataroapp.data.entities.Order): Response<ApiOrderResponse>
+
+    @POST("search_ref")
+    suspend fun searchReferences(@Body body: Referencia): Response<ApiReferenceResponse>
+
+
+    @POST("search_ref_color")
+    suspend fun searchColorByReference(@Body body: Referencia): Response<ApiReferenceColorTallaResponse>
+
+    @POST("search_ref_color_talla")
+    suspend fun searchTallaByColorReference(@Body body: Referencia): Response<ApiReferenceTallaResponse>
+
+    @POST("agregar_item_pedido")
+    suspend fun AddItemOrder(@Body item: ApiItemOrder): Response<ApiLoginResponse>
+
+    @POST("dar_items_guardados")
+    suspend fun getItemsOrder(@Body item: ApiItemOrder): Response<ApiItemsResponse>
+
 }

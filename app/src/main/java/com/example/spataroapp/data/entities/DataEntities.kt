@@ -36,12 +36,18 @@ data class ApiRequestReference(var file:String, var tipo:String)
 
 //entities for orders
 
-data class ApiOrderResponse(var message:String, var status:Int, var id_pedido:Int)
+data class ApiOrderResponse(var message:String, var status:Int, var payload:Int)
 data class Order(var id_cliente:Int, var id_usuario: Int, var fecha:String, var firma:String = "", var observacion:String = "", var direccion:String = "")
 
-
-
-
+data class Referencia(var id_referencia:String)
+data class ApiReferenceResponse(var message:String, var status:Int, var payload:MutableList<String>)
+data class ApiReferenceColorTallaResponse(var message:String, var status:Int, var payload:MutableList<ApiReferenceColorTalla>)
+data class ApiReferenceColorTalla(var label:String, var value:String)
+data class ApiReferenceTallaResponse(var message:String, var status:Int, var payload:MutableList<ApiReferenceSize>)
+data class ApiReferenceSize(var id_consecutivo:Int, var id_talla:String, var metros:Double, var precio:Double, var unidades:Int)
+data class ApiItemOrder(var id_pedido:Int=0, var id_consecutivo:Int=0, var unidades:Int=0, var precio:Double=0.0, var referencia:String="", var color:String="", var id_talla:String="")
+data class ApiItemsOrder(var items: MutableList<ApiItemOrder> = mutableListOf(), var precio_total:Double = 0.0, var unidades_total:Int = 0, var status:Int)
+data class ApiItemsResponse(var payload:ApiItemsOrder, var status:Int)
 //ROOM ENTITIES
 @Entity
 data class User(

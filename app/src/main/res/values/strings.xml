@@ -34,4 +34,7 @@
     <string name="update_references">ACTUALIZAR REFERENCIAS</string>
     <string name="select_client">Seleccionar Cliente</string>
     <string name="select_date">Seleccionar Fecha</string>
+    <string name="search_ref">Buscar Referencia</string>
+    <string name="select_ref">Seleccionar Referencia</string>
+    <string name="quantity">Cantidad</string>
 </resources>
