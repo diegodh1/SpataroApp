@@ -205,9 +205,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:text="Agregar Referencias"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="Referencias"
+                    android:textSize="18sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_search_ref"
@@ -339,7 +338,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/show_items"
-                        style="@style/Widget.MaterialComponents.Button"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -347,11 +346,61 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginRight="16dp"
                         android:text="Visualizar"
-                        android:textColor="@color/textInputColor"
-                        app:backgroundTint="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimaryDark"
                         app:icon="@drawable/search"
                         app:iconGravity="textEnd"
+                        app:iconTint="@color/colorPrimaryDark"/>
+                </LinearLayout>
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/title_signature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Firma"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/make_signature"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Realizar Firma"
+                        android:textColor="@color/textInputColor"
+                        app:backgroundTint="@color/colorPrimaryDark"
+                        app:icon="@drawable/check"
+                        app:iconGravity="textEnd"
                         app:iconTint="@color/textInputColor"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/shoose_signature"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Escoger Firma"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:icon="@drawable/signature"
+                        app:iconGravity="textEnd"
+                        app:iconTint="@color/colorPrimaryDark"/>
                 </LinearLayout>
 
 

@@ -101,6 +101,12 @@ class Repository @Inject constructor(private val remoteDataSource: RemoteDataSou
         }
     }
 
+    suspend fun deleteItemOrder(json: ApiItemOrder):Any{
+        return withContext(Dispatchers.IO){
+            remoteDataSource.deleteItemOrder(json)
+        }
+    }
+
 
     //local data source
     suspend fun getLoggedUser():List<UserProfile>{

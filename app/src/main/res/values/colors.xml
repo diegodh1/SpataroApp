@@ -6,4 +6,5 @@
     <color name="textInputColor">#FBFBFB</color>
     <color name="redColor">#FF0000</color>
     <color name="greenColor">#008000</color>
+    <color name="transparent">#80000000</color>
 </resources>

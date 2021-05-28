@@ -11,8 +11,10 @@ import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.spataroapp.R
 import com.example.spataroapp.databinding.ActivityMainBinding
+import com.example.spataroapp.presentation.home_screen.HomeDirections
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.drawer_header.view.*
@@ -100,7 +102,9 @@ class MainActivity : AppCompatActivity() {
                     setScreenToHome(R.id.action_home_to_reference)
                 }
                 R.id.orders -> {
-                    setScreenToHome(R.id.action_home_to_order)
+                    val nav = Navigation.findNavController(this, R.id.nav_host_fragment)
+                    val action = HomeDirections.actionHomeToOrder(-1)
+                    nav?.navigate(action)
                 }
             }
             true

@@ -47,7 +47,7 @@ data class ApiReferenceTallaResponse(var message:String, var status:Int, var pay
 data class ApiReferenceSize(var id_consecutivo:Int, var id_talla:String, var metros:Double, var precio:Double, var unidades:Int)
 data class ApiItemOrder(var id_pedido:Int=0, var id_consecutivo:Int=0, var unidades:Int=0, var precio:Double=0.0, var referencia:String="", var color:String="", var id_talla:String="")
 data class ApiItemsOrder(var items: MutableList<ApiItemOrder> = mutableListOf(), var precio_total:Double = 0.0, var unidades_total:Int = 0, var status:Int)
-data class ApiItemsResponse(var payload:ApiItemsOrder, var status:Int)
+data class ApiItemsResponse(var payload:ApiItemsOrder, var status:Int, var message:String)
 //ROOM ENTITIES
 @Entity
 data class User(

@@ -31,5 +31,5 @@ class RemoteDataSource @Inject constructor(
     suspend fun searchTallaByColorReference(json: Referencia) = getResult { apiService.searchTallaByColorReference(json)}
     suspend fun addItemOrder(json: ApiItemOrder) = getResult { apiService.AddItemOrder(json)}
     suspend fun getItemsOder(json: ApiItemOrder) = getResult { apiService.getItemsOrder(json)}
-
+    suspend fun deleteItemOrder(json: ApiItemOrder) = getResult { apiService.deleteItemOrder(json)}
 }

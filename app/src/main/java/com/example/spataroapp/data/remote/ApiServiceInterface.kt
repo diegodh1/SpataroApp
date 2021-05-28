@@ -62,4 +62,7 @@ interface ApiServiceInterface {
     @POST("dar_items_guardados")
     suspend fun getItemsOrder(@Body item: ApiItemOrder): Response<ApiItemsResponse>
 
+    @POST("eliminar_ref_unidades")
+    suspend fun deleteItemOrder(@Body item: ApiItemOrder): Response<ApiItemsResponse>
+
 }

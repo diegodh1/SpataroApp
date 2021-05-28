@@ -83,6 +83,14 @@ class OrderViewModel @Inject constructor(private val repository: Repository) : V
         }
     }
 
+    fun deleteItemOrder(cons:Int){
+        viewModelScope.launch {
+            val result = repository.deleteItemOrder(ApiItemOrder(id_pedido = orderID.value!!, id_consecutivo = cons)) as ApiItemsResponse
+            message.value = result.message!!
+            getItemsOrder(orderID.value!!)
+        }
+    }
+
     fun checkItemOrderFields():Boolean{
         when{
             orderID.value!! < 0 ->{

@@ -4,18 +4,22 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
+import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spataroapp.R
@@ -33,7 +37,10 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
 
     private lateinit var binding: FragmentOrderBinding
     private val viewModel: OrderViewModel by viewModels()
-
+    private lateinit var mDialogView:View
+    private lateinit var mBuilder:AlertDialog.Builder
+    private lateinit var mAlertDialog: AlertDialog
+    private lateinit var adapter:RecyclerAdapterOrder
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -56,7 +63,19 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
         //listeners
         observers()
         listeners()
-
+        //initialize
+        mDialogView = LayoutInflater.from(context).inflate(R.layout.order_recycler, null)
+        mBuilder = AlertDialog.Builder(context).setView(mDialogView)
+        mDialogView.recyclerView.adapter = context?.let { RecyclerAdapterOrder(it, this) }
+        adapter = mDialogView.recyclerView.adapter as RecyclerAdapterOrder
+        mDialogView.recyclerView.recyclerView.layoutManager = LinearLayoutManager(context)
+        mDialogView.recyclerView.recyclerView.addItemDecoration(
+            DividerItemDecoration(context,
+                LinearLayoutManager.VERTICAL)
+        )
+        mAlertDialog = mBuilder.show()
+        mAlertDialog.window?.setLayout(resources.displayMetrics.widthPixels,resources.displayMetrics.heightPixels)
+        mAlertDialog.dismiss()
         return binding.root
     }
 
@@ -100,18 +119,7 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
     }
     //show list
     fun showList(list: MutableList<ApiItemOrder>){
-        val mDialogView = LayoutInflater.from(context).inflate(R.layout.order_recycler, null)
-        val mBuilder = AlertDialog.Builder(context).setView(mDialogView).setTitle("Lista de Referencias")
-        val mAlertDialog = mBuilder.show()
-        mAlertDialog.window?.setLayout(resources.displayMetrics.widthPixels,resources.displayMetrics.heightPixels)
-        mDialogView.recyclerView.adapter = context?.let { RecyclerAdapterOrder(it, this) }
-        val adapter = mDialogView.recyclerView.adapter as RecyclerAdapterOrder
-        mDialogView.recyclerView.recyclerView.layoutManager = LinearLayoutManager(context)
-        mDialogView.recyclerView.recyclerView.addItemDecoration(
-            DividerItemDecoration(context,
-                LinearLayoutManager.VERTICAL)
-        )
-        adapter.submitList(list.toMutableList())
+        mAlertDialog.show()
         //close
         mDialogView.btn_close.setOnClickListener {
             mAlertDialog.dismiss()
@@ -180,6 +188,12 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
                 val temp = value.split(".")
                 val pos = temp[0].toInt()
                 viewModel.colors.value?.get(pos)?.let { viewModel.searchSizeByColorReference(it?.value) }
+            }
+        })
+
+        viewModel.items.observe(viewLifecycleOwner, Observer{value ->
+            if(adapter!=null) {
+                adapter.submitList(value.toMutableList())
             }
         })
     }
@@ -264,6 +278,12 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
         binding.showItems.setOnClickListener {
             showList(viewModel.items.value!!)
         }
+
+        binding.makeSignature.setOnClickListener{
+            val navController = this.findNavController()
+            val action = OrderDirections.actionOrderToCanvas(viewModel.orderID.value!!)
+            navController?.navigate(action)
+        }
     }
 
     //menu options
@@ -287,7 +307,7 @@ class Order : Fragment(), RecyclerAdapterOrder.onItemClickListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onItemClick(id: Int, quatity: Int) {
-        TODO("Not yet implemented")
+    override fun onItemClick(id: Int) {
+        viewModel.deleteItemOrder(id)
     }
 }

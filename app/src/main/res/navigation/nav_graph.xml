@@ -62,5 +62,24 @@
         android:id="@+id/order"
         android:name="com.example.spataroapp.presentation.order_screen.Order"
         android:label="fragment_order"
-        tools:layout="@layout/fragment_order" />
+        tools:layout="@layout/fragment_order" >
+        <action
+            android:id="@+id/action_order_to_canvas"
+            app:destination="@id/canvas" />
+        <argument
+            android:name="orderID"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/canvas"
+        android:name="com.example.spataroapp.presentation.canvas_screen.Canvas"
+        android:label="fragment_canvas"
+        tools:layout="@layout/fragment_canvas" >
+        <argument
+            android:name="orderID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_canvas_to_order"
+            app:destination="@id/order" />
+    </fragment>
 </navigation>
